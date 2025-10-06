@@ -84,11 +84,11 @@ python app.py --execute "List the top 5 customers by total spend in the last yea
 
 ---
 
-## 6) Model & Agent Options
+## 6) Model Options
 
 You may pick any of the following (or others):
 - **APIs**: GPT-4.1, Claude 4.5 Sonnet, Gemini 2.5 Pro/Flash, etc
-- **Local**: LLaMA 3.1 (8B) 
+- **Local**: LLaMA 3.1 8B etc.
 
 ### Suggested building blocks
 - **Schema-aware prompts**: supply table/column names and brief descriptions.
@@ -100,10 +100,7 @@ You may pick any of the following (or others):
 
 We’ll discuss how you thought about:
 - **Correctness**: How do you ensure the SQL really answers the question?
-  - Golden question set with expected SQL (or expected result tables).
-  - Normalized/rounded comparisons for floats and dates.
 - **Robustness**: Handling ambiguous queries; graceful failure with clarifying guidance.
-- **Security**: Prevent destructive queries; parameterize inputs; avoid SQL injection.
 - **Scalability**: Extending to new tables, synonyms, time filters, and larger data.
 
 (Optionally include a `tests/` folder with a few NL→SQL assertions.)
@@ -114,7 +111,7 @@ We’ll discuss how you thought about:
 
 - Assume **SQLite** SQL dialect (no proprietary functions).  
 - Focus on **SELECT** queries (read-only).  
-- If a question is ambiguous, either (a) make a **documented assumption** and proceed, or (b) print a **clarifying prompt** to the user and exit with a nonzero code.
+
 
 ---
 
@@ -123,9 +120,7 @@ We’ll discuss how you thought about:
 ```
 .
 ├─ app.py                 # CLI entrypoint
-├─ models/                # LLM or agent wrappers
 ├─ prompts/               # prompt templates
-├─ sql/                   # optional: generated SQL logs / golden queries
 ├─ sales.db               # provided (or generated)
 ├─ generate_sales_db.py   # dataset generator (optional)
 ├─ README.md              # setup & run
@@ -137,10 +132,7 @@ We’ll discuss how you thought about:
 ## 10) Stretch Goals (Optional)
 
 - **Answer synthesis**: return a short English answer with the SQL + result table.  
-- **Charting**: automatic plot (MoM trend) from the query result.  
 - **Schema discovery**: agent reads `PRAGMA table_info` to build/refresh schema map.  
-- **Multi-turn**: follow-ups that refine filters or grouping.  
-- **Result verification**: run alternative queries to triangulate correctness.
 
 ---
 
@@ -168,5 +160,6 @@ python -c 'import sqlite3; import pandas as pd; conn=sqlite3.connect("sales.db")
 - How you’d extend to bigger/changed schemas.  
 - Trade-offs: latency, cost, reliability, local vs API, few-shot vs tools.  
 - If you had another day: what would you improve?
+- How would you deploy it on the cloud?
 
 Good luck — and have fun!
