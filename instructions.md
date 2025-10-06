@@ -5,6 +5,11 @@ Welcome! This case evaluates how you can leverage LLMs to convert **natural lang
 Choose an approach and make Python code to call an LLM in 
 We care about **correctness, clarity, and engineering choices**. We expect the coding to take 1-3 hours. IMPORTANT: be prepared to describe your approach and discuss topics like Python coding choices, how you would handle SQL correctness, validation, deployment in the cloud etc.
 
+Tips:
+- Use JSON to return the responses from the LLM
+- Tell the LLM to use Sqlite SQL. Dates can be tricky to get right.
+- It is ok if it doesn't handle all questions. The important thing is that the code is well structured and that you can discuss your work and given topics.
+
 ---
 
 ## 1) Repository Deliverables
@@ -61,13 +66,13 @@ Build a small system that:
 
 ---
 
-## 4) Running Examples (expected UX)
+## 4) Running Examples
 
 ```bash
 # Generate SQL only
 python app.py "Which product category generated the most revenue in Q2 2024?"
 
-# Generate and execute
+# Generate and execute (optional)
 python app.py --execute "List the top 5 customers by total spend in the last year"
 ```
 
@@ -120,23 +125,17 @@ We’ll discuss how you thought about:
 ```
 .
 ├─ app.py                 # CLI entrypoint
+├─ models/                # LLM wrapper
 ├─ prompts/               # prompt templates
-├─ sales.db               # provided (or generated)
-├─ generate_sales_db.py   # dataset generator (optional)
+├─ sales.db               # generated 
+├─ generate_db.py         # dataset generator (optional)
 ├─ README.md              # setup & run
 └─ tests/                 # optional unit tests
 ```
 
 ---
 
-## 10) Stretch Goals (Optional)
-
-- **Answer synthesis**: return a short English answer with the SQL + result table.  
-- **Schema discovery**: agent reads `PRAGMA table_info` to build/refresh schema map.  
-
----
-
-## 11) Getting Started Quickly
+## 10) Getting Started Quickly
 
 **Python**
 ```bash
@@ -153,7 +152,7 @@ python -c 'import sqlite3; import pandas as pd; conn=sqlite3.connect("sales.db")
 
 ---
 
-## 12) What We’ll Ask You About
+## 11) What We’ll Ask You About
 
 - Why this model/agent design?  
 - How you evaluate correctness & avoid hallucinations.  
