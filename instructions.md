@@ -117,7 +117,7 @@ We’ll discuss how you thought about:
 ├─ models/                # LLM wrapper
 ├─ prompts/               # prompt templates
 ├─ sales.db               # generated 
-├─ generate_db.py         # dataset generator (optional)
+├─ generate_db.py         # dataset generator
 ├─ README.md              # setup & run
 ```
 
