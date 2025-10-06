@@ -2,7 +2,6 @@
 
 Welcome! This case evaluates how you can leverage LLMs to convert **natural language business questions** into **correct SQL** using today’s LLMs or agents.
 
-Choose an approach and make Python code to call an LLM in 
 We care about **correctness, clarity, and engineering choices**. We expect the coding to take 1-3 hours. IMPORTANT: be prepared to describe your approach and discuss topics like Python coding choices, how you would handle SQL correctness, validation, deployment in the cloud etc.
 
 Tips:
@@ -25,7 +24,7 @@ Install requirements and generate a sales.db file by running
 
 ```bash
 pip install -r requirements.txt
-python generate_sales_db.py
+python generate_db.py
 ```
 
 ### Tables
@@ -108,19 +107,9 @@ We’ll discuss how you thought about:
 - **Robustness**: Handling ambiguous queries; graceful failure with clarifying guidance.
 - **Scalability**: Extending to new tables, synonyms, time filters, and larger data.
 
-(Optionally include a `tests/` folder with a few NL→SQL assertions.)
-
 ---
 
-## 8) Guardrails & Assumptions
-
-- Assume **SQLite** SQL dialect (no proprietary functions).  
-- Focus on **SELECT** queries (read-only).  
-
-
----
-
-## 9) Suggested Project Structure
+## 8) Suggested Project Structure
 
 ```
 .
@@ -130,12 +119,11 @@ We’ll discuss how you thought about:
 ├─ sales.db               # generated 
 ├─ generate_db.py         # dataset generator (optional)
 ├─ README.md              # setup & run
-└─ tests/                 # optional unit tests
 ```
 
 ---
 
-## 10) Getting Started Quickly
+## 9) Getting Started Quickly
 
 **Python**
 ```bash
@@ -147,17 +135,18 @@ python app.py --help
 
 **SQLite**
 ```bash
-python -c 'import sqlite3; import pandas as pd; conn=sqlite3.connect("sales.db"); import pandas as pd; print(pd.read_sql_query("SELECT COUNT(*) AS n FROM Orders", conn))'
+python -c 'import sqlite3; import pandas as pd; conn=sqlite3.connect("sales.db"); print(pd.read_sql_query("SELECT COUNT(*) AS n FROM Orders", conn))'
 ```
 
 ---
 
-## 11) What We’ll Ask You About
+## 10) What We’ll Ask You About
 
 - Why this model/agent design?  
 - How you evaluate correctness & avoid hallucinations.  
 - How you’d extend to bigger/changed schemas.  
-- Trade-offs: latency, cost, reliability, local vs API, few-shot vs tools.  
+- Trade-offs: latency, cost, reliability, local vs API, few-shot vs tools. 
+- How would you think about tests? 
 - If you had another day: what would you improve?
 - How would you deploy it on the cloud?
 
